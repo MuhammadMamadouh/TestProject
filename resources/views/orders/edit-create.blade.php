@@ -82,8 +82,11 @@
                                 </div>
 
                                 <div class="offset-xl-3 offset-sm-4">
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                    <button type="button" class="btn btn-light">Discard</button>
+
+                                    <button type="submit" class="btn btn-primary">
+                                    Submit
+                                    </button>
+                                    <a href="{{url('/')}}" type="button" class="btn btn-light">Discard</a>
                                 </div>
                             </form>
                         </div>

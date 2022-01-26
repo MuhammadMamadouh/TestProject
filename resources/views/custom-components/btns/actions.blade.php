@@ -1,6 +1,8 @@
 <div>
     @if (isset($editLink))
-    <a href="{{ $editLink }}" class="" id=""><i data-feather="edit"></i></i>Edit</a>
+    <a href="{{ $editLink }}" class="" id="">
+      <i class="" data-feather="shopping-bag"></i>
+        Edit</a>
     @endif
     @if (isset($deleteLink))
     <form action="{{$deleteLink}}" class="single-del d-inline-block" method="post">

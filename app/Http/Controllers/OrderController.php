@@ -34,13 +34,6 @@ class OrderController extends Controller
     private function getDataTable($items)
     {
         return \DataTables::of($items)
-            // ->addColumn('Actions', function ($item) {
-            //     $data['item'] = $item;
-            //     $data['editLink'] = route('orders.edit', $item->id);
-            //     $data['deleteLink'] = route('orders.destroy', $item->id);
-            //     return view('custom-components.btns.actions', $data);
-            // })
-
             ->rawColumns([''])
             ->make(true);
     }
@@ -115,7 +108,6 @@ class OrderController extends Controller
     {
         $truckSize = $this->getTruckSize($request->truck_id);
         $sizesSum = $this->getAllItemsSize($request);
-
         return $truckSize < $sizesSum;
     }
     private function getAllItemsSize($request)

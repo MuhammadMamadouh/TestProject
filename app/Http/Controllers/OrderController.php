@@ -34,21 +34,21 @@ class OrderController extends Controller
     private function getDataTable($items)
     {
         return \DataTables::of($items)
-            ->addColumn('Actions', function ($item) {
-                $data['item'] = $item;
-                $data['editLink'] = route('orders.edit', $item->id);
-                $data['deleteLink'] = route('orders.destroy', $item->id);
-                return view('custom-components.btns.actions', $data);
-            })
+            // ->addColumn('Actions', function ($item) {
+            //     $data['item'] = $item;
+            //     $data['editLink'] = route('orders.edit', $item->id);
+            //     $data['deleteLink'] = route('orders.destroy', $item->id);
+            //     return view('custom-components.btns.actions', $data);
+            // })
 
-            ->rawColumns(['Actions'])
+            ->rawColumns([''])
             ->make(true);
     }
     private function getItems()
     {
         return Collection::make(Order::with('truck')->get())->map(function ($item) {
-            $item->setAttribute('truck', $item->truck->license);
-            // $item->setAttribute('type', $item->truck->truckType->type_name);
+            $item->setAttribute('type', $item->truck->truckType->type_name);
+            $item->setAttribute('truck_id', $item->truck->license);
             return $item;
         });
     }
@@ -92,6 +92,7 @@ class OrderController extends Controller
 
     private function storeItemData($request, $order)
     {
+
         foreach ($request['item_name'] as $key => $value) {
             $itemData['name'] = $request->item_name[$key];
             $itemData['qty'] = $request->qty[$key];
@@ -117,7 +118,6 @@ class OrderController extends Controller
 
         return $truckSize < $sizesSum;
     }
-
     private function getAllItemsSize($request)
     {
         foreach ($request->item_name as $key => $value) {
@@ -126,7 +126,6 @@ class OrderController extends Controller
         return $sizesSum = array_sum($sizes);
 
     }
-
     private function getTruckSize($truckId)
     {
         $truck = Truck::findOrFail($truckId);

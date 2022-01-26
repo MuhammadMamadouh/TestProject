@@ -49,10 +49,8 @@ class Order extends Model
         return [
             ['text' => 'sender Name', 'value' => 'sender_name'],
             ['text' => 'Reciever Name', 'value' => 'reciever_name'],
-            ['text' => 'Truck', 'value' => 'truck'],
+            ['text' => 'Truck', 'value' => 'truck_id'],
             ['text' => 'Truck type', 'value' => 'type'],
-            ['text' => 'Actions', 'value' => 'Actions'],
-
         ];
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ResponseMessages;
 use App\Http\Requests\StoreTruckRequest;
-use App\Http\Requests\UpdateTruckRequest;
 use App\Models\Truck;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -30,7 +29,6 @@ class TruckController extends Controller
 
         return view('index', $data);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -92,8 +90,8 @@ class TruckController extends Controller
      */
     public function update(StoreTruckRequest $request, Truck $truck)
     {
-       $truck->update($request->validated());
-return redirect()->route('trucks.index')->with('success', ResponseMessages::UPDATED);
+        $truck->update($request->validated());
+        return redirect()->route('trucks.index')->with('success', ResponseMessages::UPDATED);
 
     }
 
@@ -106,7 +104,7 @@ return redirect()->route('trucks.index')->with('success', ResponseMessages::UPDA
     public function destroy(Truck $truck)
     {
         $truck->delete();
-         return response(ResponseMessages::DELETED);
+        return response(ResponseMessages::DELETED);
 
     }
 
@@ -124,7 +122,7 @@ return redirect()->route('trucks.index')->with('success', ResponseMessages::UPDA
             ->make(true);
     }
 
-     private function getItems()
+    private function getItems()
     {
         return Collection::make(Truck::all())->map(function ($item) {
             $item->setAttribute('type', $item->truckType->type_name);

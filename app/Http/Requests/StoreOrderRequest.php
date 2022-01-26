@@ -27,16 +27,11 @@ class StoreOrderRequest extends FormRequest
             'sender_name' => 'required|string|max:255',
             'reciever_name' => 'required|string|max:255',
             'truck_id' => 'required|exists:trucks,id',
-            'item_name[]' => 'required|array',
-            'width[]' => ['required', 'array'],
-            'height[]' => 'required|array',
-            'depth[]' => 'required|array',
-            'qty[]' => 'required|array',
-
-            // 'width.*' => 'required|numeric',
-            // 'height' => 'required|numeric',
-            // 'depth.*' => 'required|numeric',
-        ];
+            'item_name' => 'required|array|min:1',
+            'width' => 'required|array|min:1',
+            'depth' => 'required|array|min:1',
+            'height' => 'required|array|min:1',
+            ];
     }
 
     public function messages()
@@ -44,11 +39,11 @@ class StoreOrderRequest extends FormRequest
         return
             [
             'truck_id.required' => 'Truck is Required',
-            'item_name[].required' => 'Item name is Required',
-            'width[].required' => 'Item width is Required',
-            'height[].required' => 'Item Height is Required',
-            'depth[].required' => 'Item Depth is Required',
-            'qty[].required' => 'Item Quantity is Required',
+            'item_name.required' => 'Item name is Required',
+            'width.required' => 'Item width is Required',
+            'height.required' => 'Item Height is Required',
+            'depth.required' => 'Item Depth is Required',
+            'qty.required' => 'Item Quantity is Required',
         ];
     }
 }
